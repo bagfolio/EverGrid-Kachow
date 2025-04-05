@@ -1,0 +1,117 @@
+You are an expert full-stack developer.
+From ideation to full production, you have a suite of useful knowledge and skills to make the best in class software regardless of the programming language and style. You are exceedingly great at making top of the line code in all areas, from high level ideation and architecture to stylizing web pages and apps. You offer profound insights at a genius level and excel at bringing apps and ideas to the next level.
+Build a complete Next.js 14+ web application called EverGrid.
+Its goal is to help Skilled Nursing Facilities (SNFs) in California complete their microgrid battery backup onboarding before the AB 2511 deadline (January 1, 2026).
+
+Architecture & Tech Stack
+Use the following:
+	•	Next.js 14 App Router
+	•	React Server Components with Edge Runtime support
+	•	Tailwind CSS and Radix UI
+	•	ShadCN components for styling and accessibility
+	•	Local JSON or localStorage for persistence (no external DBs)
+	•	Real CSV Data: Use snf_cleaned.csv as the source of truth
+Before creating new files or components, check for existing file names to avoid duplication or redundancy.
+
+File Structure
+Organize the project with the following folders:
+/app
+  /dashboard
+  /assessment
+  /financial
+  /deployment
+  /resources
+/components
+/data
+/docs  ← place PRD + Replit rules here
+/public
+Place your real data file as:
+/data/snf_cleaned.csv
+
+Data Details
+Parse snf_cleaned.csv (25 fields) into typed JSON objects.
+The schema includes:
+	•	facility_id, facility_name, address, city, county, zip
+	•	latitude, longitude, num_beds, contact_email, contact_phone
+	•	in_psps_zone, in_fire_zone, in_earthquake_zone, outage_likelihood_score
+	•	google_map_link, certification_type, status, and risk-related data
+Use this data to power map views, risk scoring, financial estimates, and assessment workflows.
+
+Features to Build
+GLOBAL UI COMPONENTS
+	•	Global header with:
+	•	Greeting: "Welcome, [Facility Name]" — change with time of day
+	•	Notification bell with red dot for pending items
+	•	Account dropdown
+	•	“Save & Resume Later” button (stores JSON state to localStorage)
+	•	Context-aware breadcrumbs on every page
+
+/dashboard – Executive Overview
+	•	Countdown timer to Jan 1, 2026
+	•	Progress pill: “Profile → Assessment → Financial → Deployment”
+	•	Facility snapshot: address, num beds, status, power setup
+	•	Risk badge: low/med/high from outage_likelihood_score
+	•	ROI teaser: bar chart (Diesel vs Mobile Lightning) + “View Analysis” button
+
+/assessment – Facility Onboarding
+	•	File upload for CSV or manual entry
+	•	Use papaparse or similar to convert .csv → JSON
+	•	Display facility data with ability to select one
+	•	Critical Load Estimator + 12-month mock usage chart
+	•	Battery Calculator:
+	•	Inputs: peak kW, hours → Output: kWh
+	•	Add slider UI to explore different backup scenarios
+
+/compliance – Rule 2511 Checklist
+	•	Visual checklist with real-time status icons:
+	•	Utility bills, backup specs, site photos, load chart
+	•	Status logic: complete, partial, missing (radix icons)
+	•	Each item links to a UI component or uploader to fix it
+
+/financial – ROI & Cost Breakdown
+	•	ROI calculator:
+	•	Compare Diesel Generator, Mobile Lightning Battery
+	•	Show CapEx, OpEx, Net Savings
+	•	Incentive Estimator with mock programs (based on county)
+	•	Ownership cost over 5 years (bar chart or timeline)
+	•	User can modify:
+	•	Outage frequency
+	•	Fuel cost increase
+	•	Backup hours
+
+/deployment – Installation Planning
+	•	Step tracker with vertical Gantt view
+	•	Staging checklist: Site Ready, Permit, Team Assigned, Install Scheduled
+	•	Color-coded status for each
+	•	Editable calendar with default 30-day offset from today
+	•	Breakdown: “We do this” vs “You do this”
+
+/resources – Knowledge & Docs
+	•	Static page for:
+	•	FAQ
+	•	PDF download (create a generateReport() function)
+	•	Upload & store facility photos
+	•	Upload PRD and Replit rules into /docs/
+
+/map (Optional Advanced)
+	•	Map of California using Leaflet or Mapbox
+	•	Marker for each facility from the CSV
+	•	Risk zone overlays (mocked if needed)
+	•	Click marker to show facility detail + quick actions
+
+Critical Development Constraints
+✅ Do not create duplicate files
+✅ Use real CSV data from /data/snf_cleaned.csv
+✅ Structure must match folder hierarchy
+✅ Use localStorage or memory for state
+✅ UI must be responsive and clean
+✅ Include ShadCN button and card variants
+
+Output Expectations
+This MVP must:
+	•	Be fully testable in Replit
+	•	Render UI with real data from snf_cleaned.csv
+	•	Allow user to complete an onboarding sequence
+	•	Show ROI and compliance status visually
+Make sure to read docs in /docs/ (Replit Rules & PRD)
+
