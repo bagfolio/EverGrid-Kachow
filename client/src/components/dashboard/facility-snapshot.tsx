@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Building2, MapPin, PhoneCall, Mail, Bed } from 'lucide-react';
 import { useFacility } from '@/lib/facility-context';
@@ -6,6 +6,19 @@ import { Badge } from '@/components/ui/badge';
 
 export function FacilitySnapshot() {
   const { selectedFacility } = useFacility();
+  const [utilityBillUploaded, setUtilityBillUploaded] = useState(false);
+  const [photosUploaded, setPhotosUploaded] = useState(false);
+  
+  useEffect(() => {
+    // Load upload status from localStorage
+    const billUploaded = localStorage.getItem('utilityBillUploaded') === 'true';
+    const meterPhotoUploaded = localStorage.getItem('meterPhotoUploaded') === 'true';
+    const panelPhotoUploaded = localStorage.getItem('panelPhotoUploaded') === 'true';
+    const areaPhotoUploaded = localStorage.getItem('areaPhotoUploaded') === 'true';
+    
+    setUtilityBillUploaded(billUploaded);
+    setPhotosUploaded(meterPhotoUploaded || panelPhotoUploaded || areaPhotoUploaded);
+  }, []);
 
   if (!selectedFacility) {
     return (
@@ -88,17 +101,29 @@ export function FacilitySnapshot() {
         </div>
       </CardContent>
       <CardFooter className="bg-muted/30 px-5 py-3 text-sm">
-        <div className="w-full">
+        <div className="w-full space-y-2">
           <div className="flex justify-between">
             <span className="text-muted-foreground">County:</span>
             <span className="font-medium">{selectedFacility.county}</span>
           </div>
           {selectedFacility.certification_type && (
-            <div className="flex justify-between mt-1">
+            <div className="flex justify-between">
               <span className="text-muted-foreground">Certification:</span>
               <span className="font-medium">{selectedFacility.certification_type}</span>
             </div>
           )}
+          <div className="flex justify-between">
+            <span className="text-muted-foreground">Utility Bill:</span>
+            <span className={utilityBillUploaded ? 'text-green-600 font-medium' : 'text-amber-600 font-medium'}>
+              {utilityBillUploaded ? 'Uploaded' : 'Pending'}
+            </span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-muted-foreground">Site Photos:</span>
+            <span className={photosUploaded ? 'text-green-600 font-medium' : 'text-amber-600 font-medium'}>
+              {photosUploaded ? 'Uploaded' : 'Pending'}
+            </span>
+          </div>
         </div>
       </CardFooter>
     </Card>

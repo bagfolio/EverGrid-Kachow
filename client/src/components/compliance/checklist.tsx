@@ -16,33 +16,43 @@ interface ChecklistItem {
 }
 
 export function Checklist() {
-  const [checklist, setChecklist] = useState<ChecklistItem[]>([
+  // Get facility data to check if documents were uploaded
+  const { selectedFacility, progress } = useFacility();
+  
+  // Determine initial checklist state based on facility data
+  const initialChecklist: ChecklistItem[] = [
     {
       id: 'facility-profile',
       title: 'Facility Profile',
       description: 'Complete facility information including address, contact details, and bed count.',
-      status: 'complete',
+      status: 'complete', // We assume this is always complete since they're viewing this page
       requiresUpload: false,
     },
     {
       id: 'load-assessment',
       title: 'Load Assessment',
       description: 'Identify critical loads that must be maintained during an outage.',
-      status: 'partial',
+      status: progress?.assessment ? 'complete' : 'partial',
       requiresUpload: false,
     },
     {
       id: 'utility-bills',
       title: 'Utility Bills',
       description: 'Upload 12 months of utility bills to analyze energy usage patterns.',
-      status: 'missing',
+      // If user skipped uploads or uploaded bills, mark as complete
+      status: localStorage.getItem('utilityBillUploaded') === 'true' ? 'complete' : 'missing',
       requiresUpload: true,
     },
     {
       id: 'site-photos',
       title: 'Site Photographs',
       description: 'Upload photos of electrical equipment and potential battery installation areas.',
-      status: 'missing',
+      // If user skipped uploads or uploaded photos, mark as complete
+      status: (
+        localStorage.getItem('meterPhotoUploaded') === 'true' || 
+        localStorage.getItem('panelPhotoUploaded') === 'true' || 
+        localStorage.getItem('areaPhotoUploaded') === 'true'
+      ) ? 'complete' : 'missing',
       requiresUpload: true,
     },
     {
@@ -59,7 +69,9 @@ export function Checklist() {
       status: 'missing',
       requiresUpload: false,
     },
-  ]);
+  ];
+  
+  const [checklist, setChecklist] = useState<ChecklistItem[]>(initialChecklist);
   
   const { updateProgress } = useFacility();
   const { toast } = useToast();

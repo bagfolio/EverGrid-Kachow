@@ -1,0 +1,299 @@
+Global Header
+
+EverGrid logo and "Admin Portal" in top left
+Global search bar in center (search by facility name, address, ID)
+User profile dropdown and notifications in top right
+System status indicator showing data freshness
+
+Primary Navigation
+
+Left sidebar with navigation sections:
+
+Dashboard (home/overview)
+Facilities Map
+Facility List
+Analytics & Reports
+Resource Management
+Settings
+
+
+
+1. Dashboard Home (Overview)
+Key Metrics Section
+
+Four prominent metric cards showing:
+
+Total SNFs: 1200 (total count with trend indicator)
+Assessment Status: Segmented by stage (Not Started, In Progress, Complete)
+Implementation Status: Ready for Installation, Verification Needed, Completed
+At-Risk Facilities: Count of high-priority sites requiring attention
+
+
+
+Priority Management Center
+
+Action-required facilities in a sortable table showing:
+
+Facility name and location
+Required action (Verification/Installation/Support)
+Risk level (High/Medium/Low)
+Days remaining to deadline
+Assign button for quick staff assignment
+
+
+
+Financial Impact Widget
+
+Total client cost savings visualization
+
+Cumulative savings counter: "$X,XXX,XXX saved to date"
+Projection line chart showing savings trajectory
+Motivational messaging: "Great progress! On track to save $X million by deadline"
+
+
+
+Activity & Timeline
+
+Recent activities feed showing staff actions and system updates
+Upcoming deadlines and scheduled visits calendar view
+
+2. Interactive Facilities Map
+Map Visualization
+
+California map showing all SNF locations with color-coded pins:
+
+Yellow pins: Facilities needing verification
+Green pins: Facilities ready for installation
+Blue pins: Compliant/normal status facilities
+Red pins: High-risk facilities requiring immediate attention
+
+
+
+Map Controls Panel
+
+Layer toggles:
+
+Facility Status Layer (default)
+Risk Zones Overlay (PSPS outage areas)
+Fire Risk Zones
+Earthquake Risk Zones
+Staff Coverage Areas
+Response Time Rings (6-hour/12-hour)
+
+
+
+Assignment Interface
+
+Clicking any facility pin opens assignment panel:
+
+Facility snapshot with key details
+Staff assignment dropdown
+Schedule visit functionality with date picker
+Task specification field
+
+
+
+Spatial Analysis Tools
+
+Clustering controls for high-density areas
+Distance measurement tool
+Coverage analysis showing underserved regions
+Export map view to PDF/image
+
+3. Facility List View
+Advanced Filtering System
+
+Multi-parameter filtering:
+
+Status filters (dropdown)
+Region/County selection
+Risk level (high/medium/low)
+Compliance progress percentage
+Facility size (bed count ranges)
+Date filters (assessment date, last contact)
+
+
+
+Data Grid
+
+Sortable, paginated table with columns:
+
+Facility Name (linked to detail page)
+Location (City, County)
+Status (color-coded indicator)
+Risk Score (numerical with visual indicator)
+Bed Count
+Assessment Progress (percentage)
+Last Activity Date
+Assigned Staff Member
+Actions (dropdown menu)
+
+
+
+Batch Operations
+
+Multi-select checkboxes for bulk actions:
+
+Assign to staff member
+Schedule verification visits
+Send reminder communications
+Update status
+Export selected data
+
+
+
+Smart Grouping
+
+Group by feature showing facilities by:
+
+Ownership/chain affiliation
+Geographic region
+Assessment status
+Risk category
+
+
+
+4. Facility Detail View
+Facility Header
+
+Facility name, address, ID number
+Status badge and progress indicator
+Key metrics (beds, risk score, days to deadline)
+Action buttons (Edit, Assign, Contact)
+
+Tabbed Interface
+
+Overview tab (default):
+
+Facility summary information
+Contact details for facility admin
+Assessment progress tracker
+Compliance status timeline
+
+
+Assessment Data tab:
+
+Utility information with usage data visualization
+Uploaded documents viewer (utility bills, etc.)
+Photo gallery of electrical infrastructure
+Verification status indicators
+
+
+Risk Profile tab:
+
+Risk score breakdown
+Location risk factors (PSPS zone, fire risk, etc.)
+Historical outage data
+Mitigation recommendations
+
+
+Implementation Plan tab:
+
+Battery sizing requirements
+Installation logistics information
+Timeline with milestone tracking
+Responsibility assignment matrix
+
+
+Communication Log tab:
+
+Chronological interaction history
+Staff notes and observations
+Document exchange record
+Next contact scheduling
+
+
+
+5. Analytics & Reporting Hub
+Executive Dashboard
+
+High-level KPI tracking:
+
+Assessment completion rate vs. target
+Resource utilization efficiency
+Regional compliance distribution
+Risk mitigation progress
+Cost savings metrics
+
+
+
+Custom Report Builder
+
+Drag-and-drop report creation interface
+Template gallery for common reports
+Scheduling options for automated distribution
+Export formats (PDF, Excel, CSV)
+
+Geographic Analysis
+
+Heat maps showing:
+
+Facility density by region
+Risk distribution across California
+Assessment progress by county
+Resource allocation efficiency
+
+
+
+Predictive Analytics
+
+Completion forecast:
+
+Projected timeline to 100% compliance
+Resource requirements prediction
+Bottleneck identification
+Optimization recommendations
+
+
+
+6. Resource Management
+Staff Assignment Dashboard
+
+Team workload visualization:
+
+Staff member listing with current assignments
+Capacity indicators and availability status
+Expertise tagging system
+Performance metrics
+
+
+
+Visit Scheduling
+
+Calendar interface for staff scheduling
+Route optimization for multi-site visits
+Time allocation based on facility complexity
+Conflict detection and resolution
+
+Equipment Tracking
+
+Battery inventory management
+Deployment status monitoring
+Maintenance scheduling
+Availability forecasting
+
+7. Risk Intelligence Integration
+For integrating ArcGIS risk data to check against SNF addresses:
+Data Sources & Integration
+
+PSPS (Public Safety Power Shutoff) zone data from utilities
+CAL FIRE hazard severity zones
+USGS earthquake risk data
+Historical outage records from CPUC
+FEMA flood zone data
+
+Implementation Approach
+
+Use address geocoding to convert facility addresses to lat/long coordinates
+Perform spatial queries against risk zone polygons
+Calculate proximity to hazard boundaries (how close to a fire zone, etc.)
+Create composite risk score based on multiple factors
+Store results in facility risk profile
+Set up recurring updates to reflect changing conditions (seasonal fire risk, etc.)
+
+Automated Alerting
+
+Real-time notifications when facilities enter high-risk situations
+Weather event tracking with impact forecasting
+Escalation protocols based on risk severity
+Integration with emergency response planning

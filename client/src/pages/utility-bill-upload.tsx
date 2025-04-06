@@ -152,6 +152,9 @@ export default function UtilityBillUpload() {
         setIsUploading(false);
         setUploadStatus('success');
         
+        // Store upload status in localStorage for compliance tracking
+        localStorage.setItem('utilityBillUploaded', 'true');
+        
         // Update overall progress
         updateUploadProgress();
         
@@ -200,10 +203,13 @@ export default function UtilityBillUpload() {
     setTimeout(() => {
       if (photoType === 'meter') {
         setMeterPhotoUploaded(true);
+        localStorage.setItem('meterPhotoUploaded', 'true');
       } else if (photoType === 'panel') {
         setPanelPhotoUploaded(true);
+        localStorage.setItem('panelPhotoUploaded', 'true');
       } else if (photoType === 'area') {
         setAreaPhotoUploaded(true);
+        localStorage.setItem('areaPhotoUploaded', 'true');
       }
 
       // Update overall progress
@@ -232,6 +238,12 @@ export default function UtilityBillUpload() {
     
     // Mark assessment as complete so we can proceed
     updateProgress('assessment', true);
+    
+    // Mark utility bills and photos as uploaded for demo purposes
+    localStorage.setItem('utilityBillUploaded', 'true');
+    localStorage.setItem('meterPhotoUploaded', 'true');
+    localStorage.setItem('panelPhotoUploaded', 'true');
+    localStorage.setItem('areaPhotoUploaded', 'true');
     
     // Navigate to registration success page (like handleContinue does)
     setLocation("/registration-success");

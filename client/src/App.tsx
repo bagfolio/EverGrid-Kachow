@@ -13,13 +13,19 @@ import MapView from "@/pages/map";
 import AuthPage from "@/pages/auth-page";
 import RoleSelect from "@/pages/role-select";
 import Unauthorized from "@/pages/unauthorized";
+
+// Admin Pages
 import AdminDashboard from "@/pages/admin/dashboard";
+import FacilitiesMap from "@/pages/admin/facilities-map";
+
+// Registration Pages
 import WelcomePage from "@/pages/registration/welcome";
 import ContactPage from "@/pages/registration/contact";
 import FacilityTypePage from "@/pages/registration/facility-type";
 import FacilityInfoPage from "@/pages/registration/facility-info";
 import UtilityBillUpload from "@/pages/utility-bill-upload";
 import RegistrationSuccess from "@/pages/registration-success";
+
 import { FacilityProvider } from "./lib/facility-context";
 import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "@/lib/protected-route";
@@ -51,6 +57,7 @@ function Router() {
       {/* Protected admin routes */}
       <ProtectedRoute path="/admin" component={AdminDashboard} adminOnly />
       <ProtectedRoute path="/admin/dashboard" component={AdminDashboard} adminOnly />
+      <ProtectedRoute path="/admin/facilities-map" component={FacilitiesMap} adminOnly />
       <ProtectedRoute path="/map" component={MapView} adminOnly />
       
       {/* Fallback route */}

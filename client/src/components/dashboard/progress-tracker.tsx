@@ -13,7 +13,8 @@ import {
   CalendarDays, 
   UserCircle2, 
   ChevronRight, 
-  HelpCircle 
+  HelpCircle,
+  ClipboardCheck
 } from 'lucide-react';
 
 export function ProgressTracker() {
@@ -58,6 +59,14 @@ export function ProgressTracker() {
       description: 'Implementation timeline, equipment selection, installation plan',
       icon: CalendarDays,
       path: '/deployment'
+    },
+    { 
+      id: 'compliance', 
+      label: 'Compliance', 
+      complete: progress.compliance,
+      description: 'AB 2511 regulatory documentation and compliance requirements',
+      icon: ClipboardCheck,
+      path: '/compliance'
     }
   ];
 

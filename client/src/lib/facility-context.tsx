@@ -13,6 +13,7 @@ interface FacilityContextType {
     assessment: boolean;
     financial: boolean;
     deployment: boolean;
+    compliance: boolean;
   };
   updateProgress: (stage: keyof FacilityContextType['progress'], value: boolean) => void;
 }
@@ -22,6 +23,7 @@ const defaultProgress = {
   assessment: false,
   financial: false,
   deployment: false,
+  compliance: false,
 };
 
 const FacilityContext = createContext<FacilityContextType | null>(null);

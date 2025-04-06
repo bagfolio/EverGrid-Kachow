@@ -18,7 +18,20 @@ async function hashPassword(password: string) {
 
 // Compare supplied password with stored password
 async function comparePasswords(supplied: string, stored: string) {
+  // Check if stored password has the correct format
+  if (!stored || !stored.includes(".")) {
+    // Handle the case where the stored password doesn't have the expected format
+    console.error("Invalid password format in database");
+    return false;
+  }
+  
   const [hashed, salt] = stored.split(".");
+  
+  if (!hashed || !salt) {
+    console.error("Invalid password format - missing hash or salt");
+    return false;
+  }
+  
   const hashedBuf = Buffer.from(hashed, "hex");
   const suppliedBuf = (await scryptAsync(supplied, salt, 64)) as Buffer;
   return timingSafeEqual(hashedBuf, suppliedBuf);
