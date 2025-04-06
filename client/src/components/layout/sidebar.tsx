@@ -46,11 +46,9 @@ export function Sidebar({ className }: SidebarProps) {
     { name: 'Resources', href: '/resources', icon: FileText, current: location === '/resources' },
   ];
   
-  // Admin navigation items
+  // Admin navigation items - redirect admins to the full-featured admin dashboard
   const adminNavItems = [
-    { name: 'Admin Dashboard', href: '/admin/dashboard', icon: LayoutDashboard, current: location === '/admin' || location === '/admin/dashboard' },
-    { name: 'User Management', href: '/admin/users', icon: Users, current: location === '/admin/users' },
-    { name: 'Facility Map', href: '/map', icon: MapPin, current: location === '/map' },
+    { name: 'Admin Dashboard', href: '/admin/dashboard', icon: LayoutDashboard, current: location === '/admin' || location === '/admin/dashboard' }
   ];
   
   // Select the appropriate navigation items based on user role

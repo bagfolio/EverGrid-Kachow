@@ -58,7 +58,9 @@ function Router() {
       <ProtectedRoute path="/map" component={MapView} />
       
       {/* Protected admin routes */}
-      <ProtectedRoute path="/admin" component={AdminDashboard} adminOnly />
+      <Route path="/admin">
+        {() => <Redirect to="/admin/dashboard" />}
+      </Route>
       <ProtectedRoute path="/admin/dashboard" component={AdminDashboard} adminOnly />
       <ProtectedRoute path="/admin/facilities-map" component={FacilitiesMap} adminOnly />
       <ProtectedRoute path="/admin/users" component={UserManagement} adminOnly />
