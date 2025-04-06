@@ -1,6 +1,7 @@
-import React from "react";
+import { Fragment } from "react";
 import { Link, useLocation } from "wouter";
 import { ChevronRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface BreadcrumbsProps {
   className?: string;
@@ -26,19 +27,19 @@ export function Breadcrumbs({ className }: BreadcrumbsProps) {
   });
 
   return (
-    <div className={`px-4 py-2 bg-white border-b border-gray-200 ${className}`}>
-      <div className="flex items-center space-x-2 text-sm text-gray-500">
+    <div className={cn("px-4 py-2 bg-background border-b", className)}>
+      <div className="flex items-center space-x-2 text-sm text-muted-foreground">
         {breadcrumbItems.map((item, index) => (
-          <React.Fragment key={item.path}>
+          <Fragment key={item.path}>
             {index > 0 && <ChevronRight className="h-4 w-4" />}
             {item.isLast ? (
-              <span className="font-medium text-gray-800">{item.label}</span>
+              <span className="font-medium text-foreground">{item.label}</span>
             ) : (
-              <Link href={item.path} className="hover:text-primary-500">
+              <Link href={item.path} className="hover:text-primary">
                 {item.label}
               </Link>
             )}
-          </React.Fragment>
+          </Fragment>
         ))}
       </div>
     </div>

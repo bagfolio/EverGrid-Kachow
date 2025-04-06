@@ -17,6 +17,7 @@ import Unauthorized from "@/pages/unauthorized";
 // Admin Pages
 import AdminDashboard from "@/pages/admin/dashboard";
 import FacilitiesMap from "@/pages/admin/facilities-map";
+import Placeholder from "@/pages/admin/placeholder";
 
 // Registration Pages
 import WelcomePage from "@/pages/registration/welcome";
@@ -59,6 +60,28 @@ function Router() {
       <ProtectedRoute path="/admin/dashboard" component={AdminDashboard} adminOnly />
       <ProtectedRoute path="/admin/facilities-map" component={FacilitiesMap} adminOnly />
       <ProtectedRoute path="/map" component={MapView} adminOnly />
+      
+      {/* Admin placeholder routes */}
+      <ProtectedRoute 
+        path="/admin/facilities" 
+        component={() => <Placeholder title="Facilities Management" description="View and manage all registered facilities." />} 
+        adminOnly 
+      />
+      <ProtectedRoute 
+        path="/admin/analytics" 
+        component={() => <Placeholder title="Analytics & Reports" description="Generate insights and reports from facility data." />} 
+        adminOnly 
+      />
+      <ProtectedRoute 
+        path="/admin/resources" 
+        component={() => <Placeholder title="Resource Management" description="Manage resources and educational materials." />} 
+        adminOnly 
+      />
+      <ProtectedRoute 
+        path="/admin/settings" 
+        component={() => <Placeholder title="System Settings" description="Configure system settings and user preferences." />} 
+        adminOnly 
+      />
       
       {/* Fallback route */}
       <Route component={NotFound} />
