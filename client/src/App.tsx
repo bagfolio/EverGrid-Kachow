@@ -38,8 +38,8 @@ function Router() {
   return (
     <Switch>
       {/* Public routes */}
-      <Route path="/" component={LandingPage} />
-      <Route path="/welcome" component={MarketingLanding} />
+      <Route path="/" component={MarketingLanding} />
+      <Route path="/legacy-landing" component={LandingPage} />
       <Route path="/role-select" component={RoleSelect} />
       <Route path="/auth" component={AuthPage} />
       <Route path="/unauthorized" component={Unauthorized} />
