@@ -23,7 +23,7 @@ export function ProtectedRoute({ path, component: Component, adminOnly = false }
         }
 
         if (!user) {
-          return <Redirect to="/auth" />;
+          return <Redirect to="/role-select" />;
         }
 
         if (adminOnly && !isAdmin) {

@@ -69,6 +69,36 @@ export function setupAuth(app: Express) {
     }
   });
 
+  // Ensure default users exist
+  const createDefaultUsers = async () => {
+    // Check if default client user exists
+    const clientUser = await storage.getUserByUsername("client");
+    if (!clientUser) {
+      await storage.createUser({
+        username: "client",
+        password: await hashPassword("password123"),
+        role: "client",
+        created_at: new Date().toISOString(),
+      });
+      console.log("Created default client user");
+    }
+    
+    // Check if default admin user exists
+    const adminUser = await storage.getUserByUsername("admin");
+    if (!adminUser) {
+      await storage.createUser({
+        username: "admin",
+        password: await hashPassword("admin123"),
+        role: "admin",
+        created_at: new Date().toISOString(),
+      });
+      console.log("Created default admin user");
+    }
+  };
+  
+  // Create default users
+  createDefaultUsers();
+
   // Register routes
   app.post("/api/register", async (req, res, next) => {
     try {
@@ -80,7 +110,7 @@ export function setupAuth(app: Express) {
       const user = await storage.createUser({
         ...req.body,
         password: await hashPassword(req.body.password),
-        role: req.body.role || "user", // Default to 'user' role if not specified
+        role: req.body.role || "client", // Default to 'client' role if not specified
       });
 
       req.login(user, (err) => {

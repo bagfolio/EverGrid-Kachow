@@ -11,6 +11,7 @@ import Deployment from "@/pages/deployment";
 import Resources from "@/pages/resources";
 import MapView from "@/pages/map";
 import AuthPage from "@/pages/auth-page";
+import RoleSelect from "@/pages/role-select";
 import Unauthorized from "@/pages/unauthorized";
 import AdminDashboard from "@/pages/admin/dashboard";
 import { FacilityProvider } from "./lib/facility-context";
@@ -20,23 +21,24 @@ import { ProtectedRoute } from "@/lib/protected-route";
 function Router() {
   return (
     <Switch>
-      {/* Public route */}
+      {/* Public routes */}
+      <Route path="/" component={RoleSelect} />
       <Route path="/auth" component={AuthPage} />
+      <Route path="/role-select" component={RoleSelect} />
       <Route path="/unauthorized" component={Unauthorized} />
       
       {/* Protected client routes */}
-      <ProtectedRoute path="/" component={Dashboard} />
       <ProtectedRoute path="/dashboard" component={Dashboard} />
       <ProtectedRoute path="/assessment" component={Assessment} />
       <ProtectedRoute path="/compliance" component={Compliance} />
       <ProtectedRoute path="/financial" component={Financial} />
       <ProtectedRoute path="/deployment" component={Deployment} />
       <ProtectedRoute path="/resources" component={Resources} />
-      <ProtectedRoute path="/map" component={MapView} />
       
       {/* Protected admin routes */}
       <ProtectedRoute path="/admin" component={AdminDashboard} adminOnly />
       <ProtectedRoute path="/admin/dashboard" component={AdminDashboard} adminOnly />
+      <ProtectedRoute path="/map" component={MapView} adminOnly />
       
       {/* Fallback route */}
       <Route component={NotFound} />
