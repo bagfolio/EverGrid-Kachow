@@ -361,9 +361,9 @@ export default function FacilityInfoPage() {
     // Store facility data
     localStorage.setItem("registration_facility", JSON.stringify(data));
     
-    // Navigate to dashboard after delay
+    // Navigate to auth page after delay
     setTimeout(() => {
-      setLocation("/dashboard");
+      setLocation("/auth");
     }, 800);
   };
   
@@ -388,9 +388,9 @@ export default function FacilityInfoPage() {
     });
   };
 
-  // Skip to dashboard for demo purposes
+  // Skip to auth page for demo purposes
   const handleSkip = () => {
-    setLocation("/dashboard");
+    setLocation("/auth");
   };
 
   return (
@@ -401,7 +401,7 @@ export default function FacilityInfoPage() {
         size="sm"
         onClick={handleSkip}
       >
-        Skip to Dashboard
+        Skip to Login
       </Button>
       
       <Card className="w-full max-w-3xl shadow-lg">
