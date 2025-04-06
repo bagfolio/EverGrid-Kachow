@@ -17,6 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Facility } from "@/types/facility";
+import { parseCSVText } from "@/lib/csv-parser";
 import { 
   ChevronLeft, 
   ChevronRight, 
@@ -85,62 +86,36 @@ export default function FacilityInfoPage() {
     },
   });
 
+
+
   // Get previously collected info
   useEffect(() => {
-    // This would normally fetch from the API, but we're using static data for demo
-    // Simulating fetching facilities from the CSV
+    // Fetch the facilities from the CSV file
     fetch("/assets/snf_cleaned.csv")
       .then(response => response.text())
-      .then(text => {
-        // Simplified parsing for demo purposes
-        // In a real app, you would use a proper CSV parser
-        console.log("Would fetch facilities from CSV in a real app");
-        // Mock data for demo
-        const mockFacilities: Facility[] = [
-          {
-            facility_id: "SNF001",
-            facility_name: "Golden Hills Care Center",
-            address: "1234 Main St",
-            city: "San Francisco",
-            zip: "94105",
-            county: "San Francisco",
-            latitude: 37.7749,
-            longitude: -122.4194,
-            num_beds: 150,
-            status: "Active",
-            certification_type: "Medicare and Medicaid",
-          },
-          {
-            facility_id: "SNF002",
-            facility_name: "Sunset Senior Living",
-            address: "5678 Ocean Ave",
-            city: "Los Angeles",
-            zip: "90001",
-            county: "Los Angeles",
-            latitude: 34.0522,
-            longitude: -118.2437,
-            num_beds: 200,
-            status: "Active",
-            certification_type: "Medicare and Medicaid",
-          },
-          {
-            facility_id: "SNF003",
-            facility_name: "Valley View Nursing Home",
-            address: "910 Valley Rd",
-            city: "Sacramento",
-            zip: "95814",
-            county: "Sacramento",
-            latitude: 38.5816,
-            longitude: -121.4944,
-            num_beds: 125,
-            status: "Active", 
-            certification_type: "Medicare and Medicaid",
-          },
-        ];
-        setFacilityList(mockFacilities);
+      .then(async (text) => {
+        try {
+          // Use the CSV parser to parse the data
+          const result = await parseCSVText(text);
+          
+          if (result.errors.length > 0) {
+            console.warn("Some CSV parsing errors occurred:", result.errors);
+          }
+          
+          // Filter for active facilities and take the first 50 for better performance
+          const activeFacilities = result.data
+            .filter((facility: Facility) => facility.status === "OPEN")
+            .slice(0, 50);
+            
+          console.log(`Loaded ${activeFacilities.length} facilities from CSV`);
+          setFacilityList(activeFacilities);
+        } catch (error) {
+          console.error("Error parsing CSV data:", error);
+          setFacilityList([]);
+        }
       })
       .catch(error => {
-        console.error("Error loading facilities:", error);
+        console.error("Error loading facilities file:", error);
         setFacilityList([]);
       });
   }, []);
@@ -150,10 +125,11 @@ export default function FacilityInfoPage() {
     if (!searchValue.trim()) return [];
     
     return facilityList.filter(facility => 
-      facility.facility_name.toLowerCase().includes(searchValue.toLowerCase()) ||
-      facility.address.toLowerCase().includes(searchValue.toLowerCase()) ||
-      facility.city.toLowerCase().includes(searchValue.toLowerCase()) ||
-      facility.facility_id.toLowerCase().includes(searchValue.toLowerCase())
+      facility.facility_name?.toLowerCase().includes(searchValue.toLowerCase()) ||
+      facility.address?.toLowerCase().includes(searchValue.toLowerCase()) ||
+      facility.city?.toLowerCase().includes(searchValue.toLowerCase()) ||
+      facility.zip?.toLowerCase().includes(searchValue.toLowerCase()) ||
+      facility.facility_id?.toLowerCase().includes(searchValue.toLowerCase())
     );
   }, [searchValue, facilityList]);
 
