@@ -361,7 +361,7 @@ export default function FacilityInfoPage() {
     // Store facility data
     localStorage.setItem("registration_facility", JSON.stringify(data));
     
-    // Navigate directly to assessment page with bill upload after delay
+    // Navigate to utility bill upload page after delay
     setTimeout(() => {
       // Auto-login as client
       fetch('/api/login', {
@@ -376,7 +376,7 @@ export default function FacilityInfoPage() {
       })
       .then(response => {
         if (response.ok) {
-          setLocation("/assessment");
+          setLocation("/utility-bill-upload");
         } else {
           setLocation("/auth"); // Fallback to auth if auto-login fails
         }
@@ -409,9 +409,9 @@ export default function FacilityInfoPage() {
     });
   };
 
-  // Skip to assessment page for demo purposes
+  // Skip to utility bill upload page for demo purposes
   const handleSkip = () => {
-    // Auto-login as client and redirect to assessment
+    // Auto-login as client and redirect to utility bill upload page
     fetch('/api/login', {
       method: 'POST',
       headers: {
@@ -424,7 +424,7 @@ export default function FacilityInfoPage() {
     })
     .then(response => {
       if (response.ok) {
-        setLocation("/assessment");
+        setLocation("/utility-bill-upload");
       } else {
         setLocation("/auth"); // Fallback to auth if auto-login fails
       }
