@@ -14,6 +14,7 @@ import AuthPage from "@/pages/auth-page";
 import RoleSelect from "@/pages/role-select";
 import Unauthorized from "@/pages/unauthorized";
 import LandingPage from "@/pages/landing-page";
+import MarketingLanding from "@/pages/marketing-landing";
 
 // Admin Pages
 import AdminDashboard from "@/pages/admin/dashboard";
@@ -38,6 +39,7 @@ function Router() {
     <Switch>
       {/* Public routes */}
       <Route path="/" component={LandingPage} />
+      <Route path="/welcome" component={MarketingLanding} />
       <Route path="/role-select" component={RoleSelect} />
       <Route path="/auth" component={AuthPage} />
       <Route path="/unauthorized" component={Unauthorized} />

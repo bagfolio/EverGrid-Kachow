@@ -328,7 +328,11 @@ export default function RoleSelect() {
       
       <div className="mt-8 text-sm text-muted-foreground text-center">
         <p>© {new Date().getFullYear()} EverGrid - AB 2511 Compliance Platform</p>
-        <div className="mt-2">
+        <div className="mt-2 flex items-center justify-center space-x-4">
+          <Link href="/welcome" className="text-primary hover:underline inline-flex items-center">
+            <Zap className="h-3 w-3 mr-1" />
+            View Marketing Site
+          </Link>
           <Link href="/learn-more" className="text-primary hover:underline inline-flex items-center">
             <HelpCircle className="h-3 w-3 mr-1" />
             Learn More

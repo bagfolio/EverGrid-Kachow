@@ -24,6 +24,7 @@ export default function LandingPage() {
     );
   }
   
-  // Otherwise, show landing page for non-authenticated users
-  return <HomePage />;
+  // For non-authenticated users, redirect to the role select page
+  // to maintain the original flow
+  return <Redirect to="/role-select" />;
 }

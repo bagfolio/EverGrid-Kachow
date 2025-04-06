@@ -64,6 +64,10 @@ export function Sidebar({ className }: SidebarProps) {
           </div>
           <span className="ml-2 text-xl font-semibold text-gray-800">EverGrid</span>
         </Link>
+        
+        <Link href="/role-select" className="ml-4 text-sm text-gray-600 hover:text-primary transition-colors">
+          Switch Portal
+        </Link>
       </div>
       
       {/* Navigation */}
