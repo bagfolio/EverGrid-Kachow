@@ -43,7 +43,7 @@ const MapComponent = () => {
                 ${facility.address}, ${facility.city}, CA ${facility.zip}<br>
                 <button id="select-${facility.facility_id}" class="mt-2 px-2 py-1 bg-blue-500 text-white rounded text-xs">Select Facility</button>
               `);
-            
+
             marker.on('popupopen', () => {
               setTimeout(() => {
                 const button = document.getElementById(`select-${facility.facility_id}`);
@@ -55,7 +55,7 @@ const MapComponent = () => {
                 }
               }, 0);
             });
-            
+
             // Highlight selected facility
             if (selectedFacility && facility.facility_id === selectedFacility.facility_id) {
               marker.setPopupContent(`
