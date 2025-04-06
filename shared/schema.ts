@@ -2,6 +2,24 @@ import { pgTable, text, serial, integer, boolean, real } from "drizzle-orm/pg-co
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+// User schema for authentication
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  username: text("username").notNull().unique(),
+  password: text("password").notNull(),
+  role: text("role").notNull().default("client"), // client or admin
+  email: text("email"),
+  name: text("name"),
+  created_at: text("created_at").notNull(),
+});
+
+export const insertUserSchema = createInsertSchema(users).omit({
+  id: true
+});
+
+export type InsertUser = z.infer<typeof insertUserSchema>;
+export type User = typeof users.$inferSelect;
+
 export const facilities = pgTable("facilities", {
   facility_id: text("facility_id").primaryKey(),
   aspen_facid: text("aspen_facid"),
@@ -45,6 +63,7 @@ export const facilityProgress = pgTable("facility_progress", {
   financial_complete: boolean("financial_complete").default(false),
   deployment_complete: boolean("deployment_complete").default(false),
   last_updated: text("last_updated").notNull(),
+  user_id: integer("user_id"), // Reference to the user who made the updates
 });
 
 export const insertFacilityProgressSchema = createInsertSchema(facilityProgress).omit({

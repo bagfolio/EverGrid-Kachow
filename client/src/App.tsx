@@ -10,19 +10,35 @@ import Financial from "@/pages/financial";
 import Deployment from "@/pages/deployment";
 import Resources from "@/pages/resources";
 import MapView from "@/pages/map";
+import AuthPage from "@/pages/auth-page";
+import Unauthorized from "@/pages/unauthorized";
+import AdminDashboard from "@/pages/admin/dashboard";
 import { FacilityProvider } from "./lib/facility-context";
+import { AuthProvider } from "@/hooks/use-auth";
+import { ProtectedRoute } from "@/lib/protected-route";
 
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Dashboard} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/assessment" component={Assessment} />
-      <Route path="/compliance" component={Compliance} />
-      <Route path="/financial" component={Financial} />
-      <Route path="/deployment" component={Deployment} />
-      <Route path="/resources" component={Resources} />
-      <Route path="/map" component={MapView} />
+      {/* Public route */}
+      <Route path="/auth" component={AuthPage} />
+      <Route path="/unauthorized" component={Unauthorized} />
+      
+      {/* Protected client routes */}
+      <ProtectedRoute path="/" component={Dashboard} />
+      <ProtectedRoute path="/dashboard" component={Dashboard} />
+      <ProtectedRoute path="/assessment" component={Assessment} />
+      <ProtectedRoute path="/compliance" component={Compliance} />
+      <ProtectedRoute path="/financial" component={Financial} />
+      <ProtectedRoute path="/deployment" component={Deployment} />
+      <ProtectedRoute path="/resources" component={Resources} />
+      <ProtectedRoute path="/map" component={MapView} />
+      
+      {/* Protected admin routes */}
+      <ProtectedRoute path="/admin" component={AdminDashboard} adminOnly />
+      <ProtectedRoute path="/admin/dashboard" component={AdminDashboard} adminOnly />
+      
+      {/* Fallback route */}
       <Route component={NotFound} />
     </Switch>
   );
@@ -31,10 +47,12 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <FacilityProvider>
-        <Router />
-        <Toaster />
-      </FacilityProvider>
+      <AuthProvider>
+        <FacilityProvider>
+          <Router />
+          <Toaster />
+        </FacilityProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
