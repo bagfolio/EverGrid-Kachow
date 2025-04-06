@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { calculateCountdown, AB2511Deadline } from '@/lib/countdown';
 import { useLocation } from 'wouter';
 import { Clock, AlertTriangle, Calendar, ChevronRight } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 export function CountdownTimer() {
   const [countdown, setCountdown] = useState({
@@ -39,23 +38,16 @@ export function CountdownTimer() {
   
   const urgency = getUrgencyLevel();
   
-  // Pulse animation for critical countdown
-  const pulseVariants = {
-    pulse: {
-      scale: [1, 1.03, 1],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        repeatType: "reverse"
-      }
-    }
-  };
+  // CSS animation class for critical urgency
+  const [pulseClass, setPulseClass] = useState('');
+  
+  useEffect(() => {
+    // Apply animation class only if urgency is critical
+    setPulseClass(urgency === 'critical' ? 'animate-pulse' : '');
+  }, [urgency]);
 
   return (
-    <motion.div
-      variants={urgency === 'critical' ? pulseVariants : {}}
-      animate={urgency === 'critical' ? "pulse" : ""}
-    >
+    <div className={pulseClass}>
       <Card className="w-full bg-white shadow-md overflow-hidden border-muted">
         <CardHeader className="pb-3 border-b border-muted/30">
           <CardTitle className="text-lg flex items-center">
@@ -154,6 +146,6 @@ export function CountdownTimer() {
           </div>
         </CardContent>
       </Card>
-    </motion.div>
+    </div>
   );
 }

@@ -229,8 +229,12 @@ export default function UtilityBillUpload() {
       description: "You can upload these documents later from the Assessment page.",
       duration: 3000,
     });
-    // Navigate to the assessment page
-    setLocation("/assessment");
+    
+    // Mark assessment as complete so we can proceed
+    updateProgress('assessment', true);
+    
+    // Navigate to registration success page (like handleContinue does)
+    setLocation("/registration-success");
   };
 
   // Use effect to monitor upload status changes and update overall progress
