@@ -91,7 +91,7 @@ export default function FacilityInfoPage() {
   // Get previously collected info
   useEffect(() => {
     // Fetch the facilities from the CSV file
-    fetch("/assets/snf_cleaned.csv")
+    fetch("/attached_assets/snf_cleaned.csv")
       .then(response => response.text())
       .then(async (text) => {
         try {
@@ -99,31 +99,232 @@ export default function FacilityInfoPage() {
           const result = await parseCSVText(text);
           
           if (result.errors.length > 0) {
-            console.warn("Some CSV parsing errors occurred:", result.errors);
+            console.warn("Some CSV parsing errors occurred:", result.errors.slice(0, 5));
           }
           
-          // Filter for active facilities and take the first 50 for better performance
+          // Filter for active facilities
           const activeFacilities = result.data
-            .filter((facility: Facility) => facility.status === "OPEN")
-            .slice(0, 50);
+            .filter((facility: Facility) => facility.status === "OPEN");
             
           console.log(`Loaded ${activeFacilities.length} facilities from CSV`);
-          setFacilityList(activeFacilities);
+          
+          // If we couldn't load any facilities, fall back to some sample data
+          if (activeFacilities.length === 0) {
+            console.log("Using sample facility data");
+            setFacilityList([
+              {
+                facility_id: "10000001",
+                status: "OPEN",
+                certification_type: "LICENSED AND CERTIFIED",
+                county: "SONOMA",
+                facility_name: "VINEYARD POST ACUTE",
+                address: "101 MONROE ST",
+                city: "PETALUMA",
+                zip: "94954",
+                latitude: 38.256552,
+                longitude: -122.628024,
+                contact_email: "SHANE.BLOOD@PACS.COM",
+                contact_phone: "(707) 763-4109",
+                num_beds: 99
+              },
+              {
+                facility_id: "10000003",
+                status: "OPEN",
+                certification_type: "LICENSED AND CERTIFIED",
+                county: "SONOMA",
+                facility_name: "CREEKSIDE REHABILITATION & BEHAVIORAL HEALTH",
+                address: "850 SONOMA AVE",
+                city: "SANTA ROSA",
+                zip: "95404",
+                latitude: 38.438712,
+                longitude: -122.7059775,
+                contact_email: "RAUL@HIBORNCARE.COM",
+                contact_phone: "(707) 303-8810",
+                num_beds: 181
+              },
+              {
+                facility_id: "10000004",
+                status: "OPEN",
+                certification_type: "LICENSED AND CERTIFIED",
+                county: "DEL NORTE",
+                facility_name: "CRESCENT CITY SKILLED NURSING",
+                address: "1280 MARSHALL ST",
+                city: "CRESCENT CITY",
+                zip: "95531",
+                latitude: 41.768559,
+                longitude: -124.200918,
+                contact_email: "RPORTER@CCSNCARE.COM",
+                contact_phone: "(707) 464-6151",
+                num_beds: 99
+              }
+            ]);
+          } else {
+            setFacilityList(activeFacilities);
+          }
         } catch (error) {
           console.error("Error parsing CSV data:", error);
-          setFacilityList([]);
+          // Use fallback data
+          console.log("Using fallback facility data due to parsing error");
+          setFacilityList([
+            {
+              facility_id: "10000001",
+              status: "OPEN",
+              certification_type: "LICENSED AND CERTIFIED",
+              county: "SONOMA",
+              facility_name: "VINEYARD POST ACUTE",
+              address: "101 MONROE ST",
+              city: "PETALUMA",
+              zip: "94954",
+              latitude: 38.256552,
+              longitude: -122.628024,
+              contact_email: "SHANE.BLOOD@PACS.COM",
+              contact_phone: "(707) 763-4109",
+              num_beds: 99
+            },
+            {
+              facility_id: "10000003",
+              status: "OPEN",
+              certification_type: "LICENSED AND CERTIFIED",
+              county: "SONOMA",
+              facility_name: "CREEKSIDE REHABILITATION & BEHAVIORAL HEALTH",
+              address: "850 SONOMA AVE",
+              city: "SANTA ROSA",
+              zip: "95404",
+              latitude: 38.438712,
+              longitude: -122.7059775,
+              contact_email: "RAUL@HIBORNCARE.COM",
+              contact_phone: "(707) 303-8810",
+              num_beds: 181
+            },
+            {
+              facility_id: "10000004",
+              status: "OPEN",
+              certification_type: "LICENSED AND CERTIFIED",
+              county: "DEL NORTE",
+              facility_name: "CRESCENT CITY SKILLED NURSING",
+              address: "1280 MARSHALL ST",
+              city: "CRESCENT CITY",
+              zip: "95531",
+              latitude: 41.768559,
+              longitude: -124.200918,
+              contact_email: "RPORTER@CCSNCARE.COM",
+              contact_phone: "(707) 464-6151",
+              num_beds: 99
+            }
+          ]);
         }
       })
       .catch(error => {
         console.error("Error loading facilities file:", error);
-        setFacilityList([]);
+        // Use fallback data
+        console.log("Using fallback facility data due to loading error");
+        setFacilityList([
+          {
+            facility_id: "10000001",
+            status: "OPEN",
+            certification_type: "LICENSED AND CERTIFIED",
+            county: "SONOMA",
+            facility_name: "VINEYARD POST ACUTE",
+            address: "101 MONROE ST",
+            city: "PETALUMA",
+            zip: "94954",
+            latitude: 38.256552,
+            longitude: -122.628024,
+            contact_email: "SHANE.BLOOD@PACS.COM",
+            contact_phone: "(707) 763-4109",
+            num_beds: 99
+          },
+          {
+            facility_id: "10000003",
+            status: "OPEN",
+            certification_type: "LICENSED AND CERTIFIED",
+            county: "SONOMA",
+            facility_name: "CREEKSIDE REHABILITATION & BEHAVIORAL HEALTH",
+            address: "850 SONOMA AVE",
+            city: "SANTA ROSA",
+            zip: "95404",
+            latitude: 38.438712,
+            longitude: -122.7059775,
+            contact_email: "RAUL@HIBORNCARE.COM",
+            contact_phone: "(707) 303-8810",
+            num_beds: 181
+          },
+          {
+            facility_id: "10000004",
+            status: "OPEN",
+            certification_type: "LICENSED AND CERTIFIED",
+            county: "DEL NORTE",
+            facility_name: "CRESCENT CITY SKILLED NURSING",
+            address: "1280 MARSHALL ST",
+            city: "CRESCENT CITY",
+            zip: "95531",
+            latitude: 41.768559,
+            longitude: -124.200918,
+            contact_email: "RPORTER@CCSNCARE.COM",
+            contact_phone: "(707) 464-6151",
+            num_beds: 99
+          }
+        ]);
       });
   }, []);
+
+  // Get best matching facility for search
+  const getBestMatch = (input: string, facilities: Facility[]): Facility | null => {
+    if (!input || !facilities.length) return null;
+    
+    const searchTerm = input.toLowerCase();
+    
+    // First try exact matches
+    const exactMatch = facilities.find(facility => 
+      facility.facility_name?.toLowerCase() === searchTerm ||
+      facility.facility_id?.toLowerCase() === searchTerm
+    );
+    
+    if (exactMatch) return exactMatch;
+    
+    // Calculate a simple match score for each facility
+    const scoredFacilities = facilities.map(facility => {
+      let score = 0;
+      
+      if (facility.facility_name?.toLowerCase().includes(searchTerm)) 
+        score += 10 + (searchTerm.length / (facility.facility_name?.length || 1)) * 10;
+      
+      if (facility.address?.toLowerCase().includes(searchTerm))
+        score += 5;
+        
+      if (facility.city?.toLowerCase().includes(searchTerm))
+        score += 7;
+        
+      if (facility.zip?.toLowerCase().includes(searchTerm))
+        score += 8;
+        
+      if (facility.facility_id?.toLowerCase().includes(searchTerm))
+        score += 6;
+      
+      return { facility, score };
+    });
+    
+    // Sort by score and get the best match
+    scoredFacilities.sort((a, b) => b.score - a.score);
+    return scoredFacilities[0]?.score > 0 ? scoredFacilities[0].facility : null;
+  };
+  
+  // Handle search submission with Enter key
+  const handleSearchKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && searchValue.trim().length > 2) {
+      e.preventDefault();
+      const bestMatch = getBestMatch(searchValue, facilityList);
+      if (bestMatch) {
+        handleSelectFacility(bestMatch);
+      }
+    }
+  };
 
   // Filter facilities based on search
   const filteredFacilities = useMemo(() => {
     if (!searchValue.trim()) return [];
     
+    // Return facilities that match the search term
     return facilityList.filter(facility => 
       facility.facility_name?.toLowerCase().includes(searchValue.toLowerCase()) ||
       facility.address?.toLowerCase().includes(searchValue.toLowerCase()) ||
@@ -187,8 +388,22 @@ export default function FacilityInfoPage() {
     });
   };
 
+  // Skip to dashboard for demo purposes
+  const handleSkip = () => {
+    setLocation("/dashboard");
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-background to-secondary/10 flex flex-col items-center justify-center p-4">
+      {/* Skip button for demo purposes */}
+      <Button 
+        className="absolute top-4 right-4 bg-white/80 hover:bg-white/90 text-primary shadow-sm" 
+        size="sm"
+        onClick={handleSkip}
+      >
+        Skip to Dashboard
+      </Button>
+      
       <Card className="w-full max-w-3xl shadow-lg">
         <CardHeader className="space-y-1">
           <div className="flex items-center space-x-2">
@@ -216,7 +431,7 @@ export default function FacilityInfoPage() {
                   <div className="relative">
                     <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                     <Input
-                      placeholder="Search by facility name, address, or ID..."
+                      placeholder="Search by facility name, address, or ID... (press Enter to find best match)"
                       value={searchValue}
                       onChange={(e) => {
                         setSearchValue(e.target.value);
@@ -229,6 +444,7 @@ export default function FacilityInfoPage() {
                           setOpenPopover(false);
                         }
                       }}
+                      onKeyDown={handleSearchKeyDown}
                       className="pl-10"
                     />
                   </div>
