@@ -48,7 +48,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
     { name: "Dashboard", href: "/admin/dashboard", icon: Building2 },
     { name: "User Management", href: "/admin/users", icon: Users },
     { name: "Facilities Map", href: "/admin/facilities-map", icon: Map },
-    { name: "Facility List", href: "/map", icon: List }, // Using existing map view as fallback
+    { name: "Facilities Management", href: "/admin/facilities", icon: List },
     { name: "Analytics & Reports", href: "/admin/analytics", icon: BarChart3 },
     { name: "Resource Management", href: "/admin/resources", icon: Package2 },
     { name: "Settings", href: "/admin/settings", icon: Settings },

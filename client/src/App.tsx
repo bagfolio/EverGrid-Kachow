@@ -55,13 +55,13 @@ function Router() {
       <ProtectedRoute path="/financial" component={Financial} />
       <ProtectedRoute path="/deployment" component={Deployment} />
       <ProtectedRoute path="/resources" component={Resources} />
+      <ProtectedRoute path="/map" component={MapView} />
       
       {/* Protected admin routes */}
       <ProtectedRoute path="/admin" component={AdminDashboard} adminOnly />
       <ProtectedRoute path="/admin/dashboard" component={AdminDashboard} adminOnly />
       <ProtectedRoute path="/admin/facilities-map" component={FacilitiesMap} adminOnly />
       <ProtectedRoute path="/admin/users" component={UserManagement} adminOnly />
-      <ProtectedRoute path="/map" component={MapView} adminOnly />
       
       {/* Admin placeholder routes */}
       <ProtectedRoute 
