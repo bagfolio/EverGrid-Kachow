@@ -48,8 +48,30 @@ export default function RoleSelect() {
     return <Redirect to="/dashboard" />;
   }
 
+  // Skip to utility bill upload page for demo purposes
+  const handleSkip = () => {
+    // Auto-login as client and redirect to utility bill upload page
+    loginMutation.mutate({ 
+      username: "client", 
+      password: "password123" 
+    }, {
+      onSuccess: () => {
+        window.location.href = "/utility-bill-upload";
+      }
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-background to-secondary/10 flex flex-col items-center justify-center p-4">
+      {/* Skip button for demo purposes */}
+      <Button 
+        className="absolute top-4 right-4 bg-white/80 hover:bg-white/90 text-primary shadow-sm" 
+        size="sm"
+        onClick={handleSkip}
+      >
+        Skip to Bill Upload
+      </Button>
+      
       {/* Logo & Header Section with animated element */}
       <div className="text-center mb-8">
         <div className="flex items-center justify-center mb-2 relative">
