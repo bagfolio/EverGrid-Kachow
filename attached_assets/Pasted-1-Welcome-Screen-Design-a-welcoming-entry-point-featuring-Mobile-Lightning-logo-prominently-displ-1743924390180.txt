@@ -1,0 +1,143 @@
+1. Welcome Screen
+Design a welcoming entry point featuring:
+
+Mobile Lightning logo prominently displayed at the top
+An animated battery/lightning icon that softly pulses
+Headline: "Power Solutions Made Simple"
+Subheading: "Complete this quick assessment to discover your tailored microgrid solution"
+Large, prominent "Get Started" button with subtle hover effect
+Optional "Learn More" link for users who want additional information before starting
+
+2. Initial Contact Information
+Create a form collecting essential user information:
+
+Clean, single-column layout with generously spaced form fields
+Organization name field with autocomplete for known companies
+Contact name field (first and last name)
+Business email with validation (business domain checking)
+Phone number with formatting mask as user types
+Role/title dropdown (Facility Manager, Operations Director, Energy Manager, Sustainability Lead, Other)
+"Continue" button only activates when required fields are completed
+Subtle field validation with green checkmarks appearing when fields are properly filled
+
+3. Facility Type Selection
+Design an intuitive facility type selector:
+
+Visual card-based selection (not just a dropdown) with 5-6 cards in a grid
+Each card should include:
+
+Icon representing the facility type (healthcare icon, data center servers, etc.)
+Facility type name as header (Skilled Nursing Facility, Hospital, Data Center, Port Operation, Industrial Manufacturing, Other)
+Brief description (1-2 lines) of typical needs for that facility type
+
+
+Cards highlight/elevate when hovered and show selected state when clicked
+If "Skilled Nursing Facility" is selected, display brief message about AB 2511 compliance
+If "Other" is selected, show an additional field for specifying the facility type
+"Continue" button appears more prominent after selection is made
+
+4. Facility Identification & Address
+Create an intelligent address entry system:
+
+Start with a search field labeled "Find your facility"
+As user types, present a dropdown of matching facilities from the CSV file
+Each dropdown result should show:
+
+Facility name
+Address
+City/State
+Facility ID (smaller text, for reference)
+
+
+When user selects a match, auto-populate all relevant fields including:
+
+Full address (street, city, state, zip)
+Known bed count (for healthcare facilities)
+FACADMIN and contact information if available
+
+
+If no match is found, smoothly transition to manual entry mode
+Include a small map preview that shows the location pin after selection
+Add "Is this information correct?" confirmation with edit option
+
+5. Utility Information Collection
+Design a dual-path utility data collection:
+
+Present two clear options with visual cards:
+
+"Connect Your Utility Account" (primary recommendation)
+"Upload Utility Bill" (alternative option)
+
+
+For the Connect option:
+
+Show logos of supported utilities (PG&E, SCE, SDG&E, etc.)
+When selected, display a secure OAuth-style connection popup
+Include reassuring security message: "We use bank-level encryption and never store your utility credentials"
+Show animated connecting/loading state during the process
+Display success confirmation with green checkmark when connected
+
+
+For the Upload option:
+
+Provide a drag-and-drop zone with dotted border
+Include clear instructions: "Drag your most recent utility bill (PDF or image)"
+Show supported file types (PDF, JPG, PNG)
+Display upload progress bar during file transmission
+Preview the document after upload with option to replace
+
+
+Allow users to skip this step with "I'll do this later" option, but include gentle messaging about the benefits of providing utility data now
+
+6. Site Assessment Photos
+Create an intuitive photo collection interface:
+
+Explain purpose: "These photos help us assess your electrical infrastructure for compatibility"
+Show 3 photo collection categories with visual examples:
+
+Electrical Panel (example thumbnail showing what we're looking for)
+Transformer/Electrical Room (example thumbnail)
+Potential Installation Area (example thumbnail)
+
+
+For each category, provide:
+
+Simple drag-drop upload zone
+Direct camera access button for mobile users
+Text guidance on what should be visible in the photo
+Warning if uploaded image is too dark/blurry
+
+
+Make this step optional with "Skip for now" button
+Show progress indicators for uploads and processing status
+Include helper text explaining that photos can be added later if skipped
+
+7. Confirmation & Next Steps
+Design a completion screen that:
+
+Shows a celebratory animation (subtle confetti or checkmark effect)
+Displays a "Profile Created Successfully!" message
+Summarizes the information collected
+Shows the next steps in the process with estimated times:
+
+"Our team is analyzing your information (1-2 business days)"
+"You'll receive your personalized assessment via email"
+"A Mobile Lightning expert will contact you to discuss your solution"
+
+
+Provides immediate access to dashboard with "Go to Dashboard" button
+Offers option to "Add another facility" for multi-site organizations
+
+Special Interaction Features
+Throughout the process, implement these user-friendly features:
+
+Persistent Save: Autosave progress as users move through steps
+Step Navigation: Allow jumping between completed steps from the progress bar
+Help Tooltips: Small question mark icons that reveal contextual help when clicked
+Keyboard Navigation: Full tab navigation and enter key submission
+Loading States: Subtle animations during processing to indicate activity
+Error Recovery: Friendly error messages with clear recovery paths
+Exit Protection: Confirmation dialog if user attempts to leave with unsaved data
+Responsive Breakpoints: Optimized layouts for desktop, tablet, and mobile
+
+This sign-up process balances comprehensive data collection with user-friendly interactions, creating an elegant experience that reduces friction and increases completion rates. The design emphasizes visual clarity and progressive disclosure to make the technical assessment process approachable for all facility managers.

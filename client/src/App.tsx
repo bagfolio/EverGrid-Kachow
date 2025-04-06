@@ -14,6 +14,10 @@ import AuthPage from "@/pages/auth-page";
 import RoleSelect from "@/pages/role-select";
 import Unauthorized from "@/pages/unauthorized";
 import AdminDashboard from "@/pages/admin/dashboard";
+import WelcomePage from "@/pages/registration/welcome";
+import ContactPage from "@/pages/registration/contact";
+import FacilityTypePage from "@/pages/registration/facility-type";
+import FacilityInfoPage from "@/pages/registration/facility-info";
 import { FacilityProvider } from "./lib/facility-context";
 import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "@/lib/protected-route";
@@ -26,6 +30,12 @@ function Router() {
       <Route path="/auth" component={AuthPage} />
       <Route path="/role-select" component={RoleSelect} />
       <Route path="/unauthorized" component={Unauthorized} />
+      
+      {/* Registration flow */}
+      <Route path="/registration/welcome" component={WelcomePage} />
+      <Route path="/registration/contact" component={ContactPage} />
+      <Route path="/registration/facility-type" component={FacilityTypePage} />
+      <Route path="/registration/facility-info" component={FacilityInfoPage} />
       
       {/* Protected client routes */}
       <ProtectedRoute path="/dashboard" component={Dashboard} />

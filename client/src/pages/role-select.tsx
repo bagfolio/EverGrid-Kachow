@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "@/hooks/use-auth";
-import { Redirect } from "wouter";
+import { Redirect, Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -11,8 +11,14 @@ import {
   Clock,
   FileText,
   ChevronRight,
-  Zap
+  Zap,
+  CheckCircle2,
+  Clock3,
+  ArrowRight,
+  ListChecks,
+  HelpCircle
 } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export default function RoleSelect() {
   const { loginMutation, user } = useAuth();
@@ -43,24 +49,65 @@ export default function RoleSelect() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-secondary/20 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-background to-secondary/10 flex flex-col items-center justify-center p-4">
+      {/* Logo & Header Section with animated element */}
       <div className="text-center mb-8">
-        <div className="flex items-center justify-center mb-2">
-          <Zap className="h-12 w-12 text-primary mr-2" />
-          <h1 className="text-4xl font-bold">EverGrid</h1>
+        <div className="flex items-center justify-center mb-2 relative">
+          <div className="absolute inset-0 bg-primary/5 rounded-full blur-xl animate-pulse"></div>
+          <div className="relative animate-pulse">
+            <Zap className="h-16 w-16 text-primary mr-2" />
+          </div>
+          <h1 className="relative text-5xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+            EverGrid
+          </h1>
         </div>
-        <p className="text-lg text-muted-foreground max-w-md mx-auto">
+        <p className="text-lg text-muted-foreground max-w-md mx-auto mt-2">
           Your complete platform for AB 2511 compliance and backup power solutions.
         </p>
-        <div className="mt-2 bg-amber-100 text-amber-800 py-1 px-4 rounded-full inline-flex items-center text-sm">
-          <Clock className="h-4 w-4 mr-1" />
+        <div className="mt-3 bg-amber-100 text-amber-800 py-1.5 px-5 rounded-full inline-flex items-center text-sm">
+          <Clock className="h-4 w-4 mr-2" />
           <span>Compliance deadline: January 1, 2026</span>
+        </div>
+        <div className="mt-2 bg-primary/10 text-primary py-1.5 px-5 rounded-full inline-flex items-center text-sm">
+          <CheckCircle2 className="h-4 w-4 mr-2" />
+          <span>Already helping 350+ SNFs achieve compliance</span>
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6 max-w-4xl w-full">
-        <Card className="relative overflow-hidden border-2 hover:border-primary/50 transition-all">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full" />
+      {/* How it Works Section */}
+      <div className="max-w-4xl w-full mb-8">
+        <h2 className="text-xl font-semibold text-center mb-6">How EverGrid Works</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-sm">
+            <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+              <ListChecks className="h-6 w-6 text-primary" />
+            </div>
+            <h3 className="font-medium">1. Assess</h3>
+            <p className="text-sm text-muted-foreground mt-1">Evaluate your facility's power needs and risks</p>
+          </div>
+          
+          <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-sm">
+            <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+              <BatteryCharging className="h-6 w-6 text-primary" />
+            </div>
+            <h3 className="font-medium">2. Plan</h3>
+            <p className="text-sm text-muted-foreground mt-1">Design your custom microgrid solution</p>
+          </div>
+          
+          <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-sm">
+            <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+              <CheckCircle2 className="h-6 w-6 text-primary" />
+            </div>
+            <h3 className="font-medium">3. Implement</h3>
+            <p className="text-sm text-muted-foreground mt-1">Deploy and maintain your backup power system</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Portal Selection Cards */}
+      <div className="grid md:grid-cols-2 gap-8 max-w-4xl w-full">
+        <Card className="relative overflow-hidden border-2 hover:border-primary/70 transition-all bg-white shadow-md">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
           
           <CardHeader>
             <div className="flex items-center space-x-3">
@@ -75,10 +122,10 @@ export default function RoleSelect() {
           </CardHeader>
           
           <CardContent className="space-y-4">
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="flex items-start">
                 <div className="flex-shrink-0 mt-1">
-                  <FileText className="h-5 w-5 text-muted-foreground" />
+                  <FileText className="h-5 w-5 text-primary/70" />
                 </div>
                 <div className="ml-3">
                   <h3 className="text-sm font-medium">Compliance Dashboard</h3>
@@ -90,7 +137,7 @@ export default function RoleSelect() {
               
               <div className="flex items-start">
                 <div className="flex-shrink-0 mt-1">
-                  <BatteryCharging className="h-5 w-5 text-muted-foreground" />
+                  <BatteryCharging className="h-5 w-5 text-primary/70" />
                 </div>
                 <div className="ml-3">
                   <h3 className="text-sm font-medium">Energy Assessment</h3>
@@ -102,7 +149,7 @@ export default function RoleSelect() {
               
               <div className="flex items-start">
                 <div className="flex-shrink-0 mt-1">
-                  <FileText className="h-5 w-5 text-muted-foreground" />
+                  <FileText className="h-5 w-5 text-primary/70" />
                 </div>
                 <div className="ml-3">
                   <h3 className="text-sm font-medium">Financial Planning</h3>
@@ -116,7 +163,7 @@ export default function RoleSelect() {
           
           <CardFooter>
             <Button 
-              className="w-full group" 
+              className="w-full group bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-700" 
               onClick={handleClientLogin}
               disabled={isLoading.client || isLoading.admin}
             >
@@ -138,8 +185,8 @@ export default function RoleSelect() {
           </CardFooter>
         </Card>
 
-        <Card className="relative overflow-hidden border-2 hover:border-primary/50 transition-all">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full" />
+        <Card className="relative overflow-hidden border-2 hover:border-primary/70 transition-all bg-white shadow-md">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
           
           <CardHeader>
             <div className="flex items-center space-x-3">
@@ -154,10 +201,10 @@ export default function RoleSelect() {
           </CardHeader>
           
           <CardContent className="space-y-4">
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="flex items-start">
                 <div className="flex-shrink-0 mt-1">
-                  <Users className="h-5 w-5 text-muted-foreground" />
+                  <Users className="h-5 w-5 text-primary/70" />
                 </div>
                 <div className="ml-3">
                   <h3 className="text-sm font-medium">User Management</h3>
@@ -169,7 +216,7 @@ export default function RoleSelect() {
               
               <div className="flex items-start">
                 <div className="flex-shrink-0 mt-1">
-                  <Building className="h-5 w-5 text-muted-foreground" />
+                  <Building className="h-5 w-5 text-primary/70" />
                 </div>
                 <div className="ml-3">
                   <h3 className="text-sm font-medium">Facility Overview</h3>
@@ -181,7 +228,7 @@ export default function RoleSelect() {
               
               <div className="flex items-start">
                 <div className="flex-shrink-0 mt-1">
-                  <FileText className="h-5 w-5 text-muted-foreground" />
+                  <FileText className="h-5 w-5 text-primary/70" />
                 </div>
                 <div className="ml-3">
                   <h3 className="text-sm font-medium">Analytics Dashboard</h3>
@@ -219,8 +266,41 @@ export default function RoleSelect() {
         </Card>
       </div>
       
-      <div className="mt-8 text-sm text-muted-foreground">
+      {/* FAQ Section */}
+      <div className="mt-10 w-full max-w-4xl">
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="faq-1">
+            <AccordionTrigger className="text-left">What is AB 2511 compliance?</AccordionTrigger>
+            <AccordionContent>
+              AB 2511 is California legislation requiring skilled nursing facilities to have backup power 
+              systems capable of powering critical functions for at least 96 hours during emergencies by January 1, 2026.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="faq-2">
+            <AccordionTrigger className="text-left">How does EverGrid help with compliance?</AccordionTrigger>
+            <AccordionContent>
+              EverGrid provides a complete platform for assessing your facility's power needs, 
+              planning appropriate backup systems, tracking compliance progress, and managing implementation.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="faq-3">
+            <AccordionTrigger className="text-left">What size facility can use EverGrid?</AccordionTrigger>
+            <AccordionContent>
+              EverGrid is designed to work with facilities of all sizes, from small 20-bed SNFs to large 
+              200+ bed facilities. Our assessment tools scale to fit your specific facility's needs.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
+      
+      <div className="mt-8 text-sm text-muted-foreground text-center">
         <p>© {new Date().getFullYear()} EverGrid - AB 2511 Compliance Platform</p>
+        <div className="mt-2">
+          <Link href="/learn-more" className="text-primary hover:underline inline-flex items-center">
+            <HelpCircle className="h-3 w-3 mr-1" />
+            Learn More
+          </Link>
+        </div>
       </div>
     </div>
   );
