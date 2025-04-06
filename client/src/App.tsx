@@ -19,6 +19,7 @@ import ContactPage from "@/pages/registration/contact";
 import FacilityTypePage from "@/pages/registration/facility-type";
 import FacilityInfoPage from "@/pages/registration/facility-info";
 import UtilityBillUpload from "@/pages/utility-bill-upload";
+import RegistrationSuccess from "@/pages/registration-success";
 import { FacilityProvider } from "./lib/facility-context";
 import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "@/lib/protected-route";
@@ -37,6 +38,7 @@ function Router() {
       <Route path="/registration/facility-type" component={FacilityTypePage} />
       <Route path="/registration/facility-info" component={FacilityInfoPage} />
       <Route path="/utility-bill-upload" component={UtilityBillUpload} />
+      <Route path="/registration-success" component={RegistrationSuccess} />
       
       {/* Protected client routes */}
       <ProtectedRoute path="/dashboard" component={Dashboard} />

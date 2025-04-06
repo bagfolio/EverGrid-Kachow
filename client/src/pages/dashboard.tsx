@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useAuth } from "@/hooks/use-auth";
+import { useFacility } from "@/lib/facility-context";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -9,9 +11,25 @@ import { RiskIndicator } from "@/components/dashboard/risk-indicator";
 import { ROITeaser } from "@/components/dashboard/roi-teaser";
 import { AssessmentOverview } from "@/components/dashboard/assessment-overview";
 import { UploadPrompt } from "@/components/dashboard/upload-prompt";
+import { motion } from "framer-motion";
+import { BatteryCharging, Zap } from "lucide-react";
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [showWelcome, setShowWelcome] = useState(true);
+  const { user } = useAuth();
+  const { selectedFacility } = useFacility();
+  
+  // Auto-hide welcome message after 10 seconds
+  useEffect(() => {
+    if (showWelcome) {
+      const timer = setTimeout(() => {
+        setShowWelcome(false);
+      }, 10000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [showWelcome]);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -54,6 +72,51 @@ export default function Dashboard() {
                 </div>
               </div>
             </div>
+            
+            {/* Welcome Banner */}
+            {showWelcome && (
+              <motion.div 
+                className="px-4 sm:px-6 md:px-8 mt-4"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="bg-gradient-to-r from-primary/90 to-purple-600 text-white p-4 rounded-lg shadow-md relative overflow-hidden">
+                  <div className="absolute top-0 right-0 p-2">
+                    <button 
+                      onClick={() => setShowWelcome(false)}
+                      className="text-white/80 hover:text-white"
+                      aria-label="Close welcome message"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="mr-4 bg-white/10 p-2 rounded-full">
+                      <BatteryCharging className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold">
+                        Welcome back, {user?.username || "Guest"}!
+                      </h3>
+                      <p className="text-white/90 mt-1">
+                        {selectedFacility ? (
+                          <>Your facility <span className="font-medium">{selectedFacility.facility_name}</span> is on track for AB 2511 compliance.</>
+                        ) : (
+                          <>To get started, please add your facility information and upload your utility bill.</>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="absolute -bottom-6 -right-6 opacity-10">
+                    <Zap className="h-24 w-24" />
+                  </div>
+                </div>
+              </motion.div>
+            )}
 
             {/* Countdown Timer */}
             <div className="px-4 sm:px-6 md:px-8 mt-6">

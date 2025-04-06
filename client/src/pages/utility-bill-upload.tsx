@@ -219,8 +219,8 @@ export default function UtilityBillUpload() {
 
   const handleContinue = () => {
     updateProgress('assessment', true);
-    // Navigate to the assessment page
-    setLocation("/assessment");
+    // Navigate to the success page instead of directly to assessment
+    setLocation("/registration-success");
   };
 
   const handleSkip = () => {
