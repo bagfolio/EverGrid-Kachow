@@ -43,9 +43,9 @@ export default function RoleSelect() {
     });
   };
 
-  // If user is already logged in, redirect to home
+  // If user is already logged in, redirect to dashboard
   if (user) {
-    return <Redirect to="/" />;
+    return <Redirect to="/dashboard" />;
   }
 
   return (
@@ -161,7 +161,7 @@ export default function RoleSelect() {
             </div>
           </CardContent>
           
-          <CardFooter>
+          <CardFooter className="flex flex-col space-y-3">
             <Button 
               className="w-full group bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-700" 
               onClick={handleClientLogin}
@@ -182,6 +182,17 @@ export default function RoleSelect() {
                 </span>
               )}
             </Button>
+            <Link href="/registration/welcome" className="w-full">
+              <Button 
+                className="w-full group" 
+                variant="outline"
+              >
+                <span className="flex items-center">
+                  New Registration
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
 

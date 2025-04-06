@@ -28,7 +28,6 @@ function Router() {
       {/* Public routes */}
       <Route path="/" component={RoleSelect} />
       <Route path="/auth" component={AuthPage} />
-      <Route path="/role-select" component={RoleSelect} />
       <Route path="/unauthorized" component={Unauthorized} />
       
       {/* Registration flow */}

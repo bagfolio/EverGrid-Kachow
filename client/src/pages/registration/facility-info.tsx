@@ -184,9 +184,9 @@ export default function FacilityInfoPage() {
     // Store facility data
     localStorage.setItem("registration_facility", JSON.stringify(data));
     
-    // Navigate to next step after delay
+    // Navigate to dashboard after delay
     setTimeout(() => {
-      setLocation("/registration/utility");
+      setLocation("/dashboard");
     }, 800);
   };
   
