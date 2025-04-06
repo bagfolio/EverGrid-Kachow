@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, Redirect } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -13,6 +13,7 @@ import MapView from "@/pages/map";
 import AuthPage from "@/pages/auth-page";
 import RoleSelect from "@/pages/role-select";
 import Unauthorized from "@/pages/unauthorized";
+import LandingPage from "@/pages/landing-page";
 
 // Admin Pages
 import AdminDashboard from "@/pages/admin/dashboard";
@@ -36,7 +37,8 @@ function Router() {
   return (
     <Switch>
       {/* Public routes */}
-      <Route path="/" component={RoleSelect} />
+      <Route path="/" component={LandingPage} />
+      <Route path="/role-select" component={RoleSelect} />
       <Route path="/auth" component={AuthPage} />
       <Route path="/unauthorized" component={Unauthorized} />
       

@@ -1,0 +1,113 @@
+1. Strengthen the Hero Section
+Clear Headline & Subheading
+Right now, you have “Your complete platform for AB 2511 compliance…” and a mention of the compliance deadline. Consider using a bolder, more concise headline and a quick subheading that captures the unique value proposition. For example:
+
+“Effortless AB 2511 Compliance. Reliable Backup Power Solutions.”
+“Meet your 2026 deadline with confidence and streamline energy management.”
+
+Prominent Call to Action (CTA)
+Instead of only highlighting the date, add a clear, single CTA button (e.g., “Get Started” or “Learn More”) at the top so users know exactly where to go next.
+
+Visual Interest
+Incorporate an engaging hero image or illustration relevant to compliance/energy solutions (like a facility with power backup, or a simple icon-based graphic). This helps convey the platform’s purpose at a glance.
+
+2. Clarify “How EverGrid Works”
+Use a Step-by-Step or Timeline Layout
+Visually represent each step (Assess → Plan → Implement) with icons or a short description below each. This makes it easier to skim.
+
+Assess: Brief bullet (e.g., “Evaluate your facility’s power needs.”)
+
+Plan: Brief bullet (e.g., “Design a customized microgrid solution.”)
+
+Implement: Brief bullet (e.g., “Deploy and monitor for continuous compliance.”)
+
+Add a Simple Graphic or Numbering
+Use a 3-column layout with an icon above each step to break up text and make it more memorable.
+
+3. Improve the Portal Cards Layout
+You have two distinct user flows: “Facility Portal” and “Admin Portal.” Right now, they are side-by-side blocks with bullet points.
+
+Use Clear, Distinct Cards or Panels
+Give each portal a card-style design with a slight shadow or a subtle background color difference. This visually separates them and makes it clear they are different entry points.
+
+Add Simple Icons for Each Feature
+For “Compliance Dashboard,” “Energy Reports,” etc., small icons next to each bullet can help users quickly scan the functionality.
+
+Make the Buttons More Prominent
+
+Primary CTA Button: “Enter as Facility Staff” or “Enter as Administrator”
+
+Secondary CTA Link or Button: “New Registration” or “Create Admin Account”
+
+The primary button could be more prominent (e.g., filled in with your main brand color) and the secondary could be a text or outline button.
+
+4. Refine the Top Bar / Header
+Logo & Navigation
+If you have additional pages (e.g., “Features,” “Pricing,” “Contact”), consider adding them to a top navigation bar. If it’s just a single-page design, a minimal header with the logo and a single “Sign In” or “Register” button is enough.
+
+Sticky Header
+A sticky header can be helpful so users can always access the main CTA or login/register button.
+
+5. Showcase Social Proof & Deadline Urgency
+Highlight the 350+ SNFs
+You mention “Already helping 350+ SNFs achieve compliance.” Turn that into a quick testimonial section or a stats bar to reinforce credibility.
+
+“Trusted by over 350 Skilled Nursing Facilities.”
+
+Deadline Reminder
+Use a small banner or a subtle countdown to remind users that the AB 2511 compliance deadline is approaching. This can be a banner below the hero or a small alert at the top of the page.
+
+6. Consider Overall Visual Hierarchy & Branding
+Color Palette
+The purple/lavender is distinctive. Ensure you use it consistently for buttons and key highlights. Keep secondary colors neutral or complementary (e.g., light grays, off-whites) so the purple stands out.
+
+Typography
+
+Use a larger, bolder font for headlines (e.g., 28px–32px).
+
+Keep subheadings around 20px–24px.
+
+Body text 14px–16px for readability.
+
+Maintain consistent line spacing and weights.
+
+White Space
+Increase padding and margins around sections. Let the design “breathe.” This makes everything feel cleaner and more professional.
+
+7. Add a Quick “How to Get Started” or Onboarding Section
+1–2–3 Steps
+After explaining how EverGrid works, guide new users through the actual sign-up or login process. For instance:
+
+Create an account.
+
+Enter facility details.
+
+Launch compliance dashboard.
+
+Progress Indicators
+If the registration or onboarding is multi-step, show progress bars or steps (1 of 3, 2 of 3, etc.) to reduce user friction.
+
+8. Make It Mobile-Responsive
+Responsive Layout
+On smaller screens, stack the “Facility Portal” and “Admin Portal” cards. Ensure text wraps nicely and that buttons remain large enough to tap comfortably.
+
+Test on Real Devices
+Ensure the hero section text, headings, and CTAs still look good on mobile (no overlapping or tiny text).
+
+9. Incorporate a Short Video or Animation (Optional)
+Explainer Video
+A 30–60 second clip can quickly convey how the platform solves compliance challenges. This is especially helpful for complex concepts like microgrids or compliance processes.
+
+Animated Illustrations
+Subtle animations in the “How It Works” section can grab attention without overwhelming the user.
+
+10. Offer Clear Next Steps
+Single Main CTA
+If your main goal is to get facilities to sign up, the entire page should drive toward that action. Use phrasing like:
+
+“Ready to ensure compliance? Create an account in minutes.”
+[Sign Up]
+
+Contact / Support Links
+Include a footer with a link to “Contact Us” or “Support” for anyone who has questions before signing up.
+
