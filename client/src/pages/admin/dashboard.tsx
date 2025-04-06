@@ -491,74 +491,72 @@ function ActivityTimeline() {
   return (
     <Card>
       <CardHeader>
-        <div className="flex items-center justify-between">
-          <div>
-            <CardTitle>Activity & Timeline</CardTitle>
-            <CardDescription>Recent activity and upcoming deadlines</CardDescription>
-          </div>
-          <Tabs defaultValue="activity" className="w-[250px]">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="activity">Recent Activity</TabsTrigger>
-              <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
+        <CardTitle>Activity & Timeline</CardTitle>
+        <CardDescription>Recent activity and upcoming deadlines</CardDescription>
       </CardHeader>
       <CardContent>
-        <TabsContent value="activity" className="m-0">
-          <div className="space-y-4">
-            {activities.map((activity) => (
-              <div key={activity.id} className="flex items-start space-x-3">
-                <div className="mt-0.5 rounded-full bg-primary/10 p-1.5">
-                  {iconMap[activity.type]}
-                </div>
-                <div className="flex-1 space-y-1">
-                  <p className="text-sm font-medium">
-                    {activity.facility}
-                  </p>
-                  <div className="text-sm text-muted-foreground">
-                    <span className="font-medium text-foreground">{activity.user}</span>
-                    {' '}
-                    {activity.action}
-                    {activity.date && (
-                      <> <span className="font-medium">{format(new Date(activity.date), 'MMM d, yyyy')}</span></>
-                    )}
+        <Tabs defaultValue="activity">
+          <TabsList className="grid w-full grid-cols-2 mb-4">
+            <TabsTrigger value="activity">Recent Activity</TabsTrigger>
+            <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="activity" className="m-0">
+            <div className="space-y-4">
+              {activities.map((activity) => (
+                <div key={activity.id} className="flex items-start space-x-3">
+                  <div className="mt-0.5 rounded-full bg-primary/10 p-1.5">
+                    {iconMap[activity.type]}
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    {formatTimestamp(activity.timestamp)}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </TabsContent>
-        <TabsContent value="upcoming" className="m-0">
-          <div className="space-y-4">
-            {upcoming.map((event) => (
-              <div key={event.id} className="flex items-center space-x-3">
-                <div className="flex-shrink-0 w-14 text-center">
-                  <div className="text-xs uppercase text-muted-foreground">
-                    {format(event.date, 'MMM')}
-                  </div>
-                  <div className="text-xl font-bold">
-                    {format(event.date, 'd')}
+                  <div className="flex-1 space-y-1">
+                    <p className="text-sm font-medium">
+                      {activity.facility}
+                    </p>
+                    <div className="text-sm text-muted-foreground">
+                      <span className="font-medium text-foreground">{activity.user}</span>
+                      {' '}
+                      {activity.action}
+                      {activity.date && (
+                        <> <span className="font-medium">{format(new Date(activity.date), 'MMM d, yyyy')}</span></>
+                      )}
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      {formatTimestamp(activity.timestamp)}
+                    </div>
                   </div>
                 </div>
-                <div className="flex-1">
-                  <div className="font-medium">{event.facility}</div>
-                  <div className="text-sm flex items-center text-muted-foreground">
-                    <span className="mr-2">{event.type}</span>
-                    <Badge variant="outline">{event.staff}</Badge>
+              ))}
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="upcoming" className="m-0">
+            <div className="space-y-4">
+              {upcoming.map((event) => (
+                <div key={event.id} className="flex items-center space-x-3">
+                  <div className="flex-shrink-0 w-14 text-center">
+                    <div className="text-xs uppercase text-muted-foreground">
+                      {format(event.date, 'MMM')}
+                    </div>
+                    <div className="text-xl font-bold">
+                      {format(event.date, 'd')}
+                    </div>
                   </div>
+                  <div className="flex-1">
+                    <div className="font-medium">{event.facility}</div>
+                    <div className="text-sm flex items-center text-muted-foreground">
+                      <span className="mr-2">{event.type}</span>
+                      <Badge variant="outline">{event.staff}</Badge>
+                    </div>
+                  </div>
+                  <Button size="sm" variant="outline">
+                    <Calendar className="h-4 w-4 mr-2" /> 
+                    Details
+                  </Button>
                 </div>
-                <Button size="sm" variant="outline">
-                  <Calendar className="h-4 w-4 mr-2" /> 
-                  Details
-                </Button>
-              </div>
-            ))}
-          </div>
-        </TabsContent>
+              ))}
+            </div>
+          </TabsContent>
+        </Tabs>
       </CardContent>
       <CardFooter className="border-t px-6 py-4">
         <Button variant="ghost" className="w-full" asChild>

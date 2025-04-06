@@ -14,7 +14,8 @@ import {
   Menu, 
   X,
   LogOut,
-  User
+  User,
+  Users
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -45,11 +46,12 @@ export function AdminLayout({ children }: AdminLayoutProps) {
 
   const navItems = [
     { name: "Dashboard", href: "/admin/dashboard", icon: Building2 },
+    { name: "User Management", href: "/admin/users", icon: Users },
     { name: "Facilities Map", href: "/admin/facilities-map", icon: Map },
     { name: "Facility List", href: "/map", icon: List }, // Using existing map view as fallback
-    { name: "Analytics & Reports", href: "/admin/dashboard", icon: BarChart3 }, // Fallback to dashboard
-    { name: "Resource Management", href: "/admin/dashboard", icon: Package2 }, // Fallback to dashboard
-    { name: "Settings", href: "/admin/dashboard", icon: Settings }, // Fallback to dashboard
+    { name: "Analytics & Reports", href: "/admin/analytics", icon: BarChart3 },
+    { name: "Resource Management", href: "/admin/resources", icon: Package2 },
+    { name: "Settings", href: "/admin/settings", icon: Settings },
   ];
 
   const handleLogout = () => {

@@ -17,6 +17,7 @@ import Unauthorized from "@/pages/unauthorized";
 // Admin Pages
 import AdminDashboard from "@/pages/admin/dashboard";
 import FacilitiesMap from "@/pages/admin/facilities-map";
+import UserManagement from "@/pages/admin/users";
 import Placeholder from "@/pages/admin/placeholder";
 
 // Registration Pages
@@ -59,6 +60,7 @@ function Router() {
       <ProtectedRoute path="/admin" component={AdminDashboard} adminOnly />
       <ProtectedRoute path="/admin/dashboard" component={AdminDashboard} adminOnly />
       <ProtectedRoute path="/admin/facilities-map" component={FacilitiesMap} adminOnly />
+      <ProtectedRoute path="/admin/users" component={UserManagement} adminOnly />
       <ProtectedRoute path="/map" component={MapView} adminOnly />
       
       {/* Admin placeholder routes */}
