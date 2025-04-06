@@ -361,9 +361,30 @@ export default function FacilityInfoPage() {
     // Store facility data
     localStorage.setItem("registration_facility", JSON.stringify(data));
     
-    // Navigate to auth page after delay
+    // Navigate directly to assessment page with bill upload after delay
     setTimeout(() => {
-      setLocation("/auth");
+      // Auto-login as client
+      fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: 'client',
+          password: 'password123',
+        }),
+      })
+      .then(response => {
+        if (response.ok) {
+          setLocation("/assessment");
+        } else {
+          setLocation("/auth"); // Fallback to auth if auto-login fails
+        }
+      })
+      .catch(error => {
+        console.error('Auto-login error:', error);
+        setLocation("/auth"); // Fallback to auth if auto-login fails
+      });
     }, 800);
   };
   
@@ -388,9 +409,30 @@ export default function FacilityInfoPage() {
     });
   };
 
-  // Skip to auth page for demo purposes
+  // Skip to assessment page for demo purposes
   const handleSkip = () => {
-    setLocation("/auth");
+    // Auto-login as client and redirect to assessment
+    fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: 'client',
+        password: 'password123',
+      }),
+    })
+    .then(response => {
+      if (response.ok) {
+        setLocation("/assessment");
+      } else {
+        setLocation("/auth"); // Fallback to auth if auto-login fails
+      }
+    })
+    .catch(error => {
+      console.error('Auto-login error:', error);
+      setLocation("/auth"); // Fallback to auth if auto-login fails
+    });
   };
 
   return (
@@ -401,7 +443,7 @@ export default function FacilityInfoPage() {
         size="sm"
         onClick={handleSkip}
       >
-        Skip to Login
+        Skip to Bill Upload
       </Button>
       
       <Card className="w-full max-w-3xl shadow-lg">
