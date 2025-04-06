@@ -82,30 +82,43 @@ export function setupAuth(app: Express) {
     }
   });
 
-  // Ensure default users exist
+  // Function to recreate default users if needed
   const createDefaultUsers = async () => {
-    // Check if default client user exists
-    const clientUser = await storage.getUserByUsername("client");
-    if (!clientUser) {
-      await storage.createUser({
-        username: "client",
-        password: await hashPassword("password123"),
-        role: "client",
-        created_at: new Date().toISOString(),
-      });
-      console.log("Created default client user");
-    }
-    
-    // Check if default admin user exists
-    const adminUser = await storage.getUserByUsername("admin");
-    if (!adminUser) {
-      await storage.createUser({
-        username: "admin",
-        password: await hashPassword("admin123"),
-        role: "admin",
-        created_at: new Date().toISOString(),
-      });
-      console.log("Created default admin user");
+    try {
+      // Recreate client user
+      let clientUser = await storage.getUserByUsername("client");
+      if (!clientUser) {
+        await storage.createUser({
+          username: "client",
+          password: await hashPassword("password123"),
+          role: "client",
+          created_at: new Date().toISOString(),
+        });
+        console.log("Created default client user");
+      }
+      
+      // Recreate admin user
+      let adminUser = await storage.getUserByUsername("admin");
+      if (!adminUser) {
+        await storage.createUser({
+          username: "admin",
+          password: await hashPassword("admin123"),
+          role: "admin",
+          created_at: new Date().toISOString(),
+        });
+        console.log("Created default admin user");
+      } else {
+        // Check if the password is in the correct format
+        if (!adminUser.password.includes('.')) {
+          // If the password is not properly hashed, update it
+          await storage.updateUser(adminUser.id, {
+            password: await hashPassword("admin123")
+          });
+          console.log("Updated admin user password with proper hash");
+        }
+      }
+    } catch (error) {
+      console.error("Error creating default users:", error);
     }
   };
   
